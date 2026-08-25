@@ -1,21 +1,22 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const News = require('../models/News');
+const dayjs = require("dayjs");
+const News = require("../models/News");
 
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const { lang, search, page = 1, limit = 10 } = req.query;
     const filter = {};
 
     if (search) {
-      const regex = new RegExp(search, 'i');
+      const regex = new RegExp(search, "i");
       filter.$or = [
-        { 'newspaperName.bg': regex },
-        { 'newspaperName.en': regex },
-        { 'articles.title.bg': regex },
-        { 'articles.title.en': regex },
-        { 'articles.description.bg': regex },
-        { 'articles.description.en': regex },
+        { "newspaperName.bg": regex },
+        { "newspaperName.en": regex },
+        { "articles.title.bg": regex },
+        { "articles.title.en": regex },
+        { "articles.description.bg": regex },
+        { "articles.description.en": regex },
       ];
     }
 
@@ -40,18 +41,20 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const news = await News.findById(req.params.id);
-    if (!news) return res.status(404).json({ error: 'News not found' });
+    if (!news) return res.status(404).json({ error: "News not found" });
     res.json(news);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   try {
+    req.body.issueDate = dayjs().toDate();
+
     const news = new News(req.body);
     await news.save();
     res.status(201).json(news);
@@ -60,24 +63,24 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/:id', async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const news = await News.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
     });
-    if (!news) return res.status(404).json({ error: 'News not found' });
+    if (!news) return res.status(404).json({ error: "News not found" });
     res.json(news);
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const news = await News.findByIdAndDelete(req.params.id);
-    if (!news) return res.status(404).json({ error: 'News not found' });
-    res.json({ message: 'News deleted' });
+    if (!news) return res.status(404).json({ error: "News not found" });
+    res.json({ message: "News deleted" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
