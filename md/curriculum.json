@@ -1,0 +1,80 @@
+{
+    "scheduleName": "",
+    "semester": "",
+    "academicYear": "",
+    "Monday": [
+        {
+            "subjectName": "",
+            "hour": {
+                "start": "",
+                "end": ""
+            },
+            "location": {
+                "building": "",
+                "roomNumber": ""
+            },
+            "lecturer": "",
+            "type": ""
+        }
+    ],
+    "Tuesday": [
+        {
+            "subjectName": "",
+            "hour": {
+                "start": "",
+                "end": ""
+            },
+            "location": {
+                "building": "",
+                "roomNumber": ""
+            },
+            "lecturer": "",
+            "type": ""
+        }
+    ],
+    "Wednesday": [
+        {
+            "subjectName": "",
+            "hour": {
+                "start": "",
+                "end": ""
+            },
+            "location": {
+                "building": "",
+                "roomNumber": ""
+            },
+            "lecturer": "",
+            "type": ""
+        }
+    ],
+    "Thursday": [
+        {
+            "subjectName": "",
+            "hour": {
+                "start": "",
+                "end": ""
+            },
+            "location": {
+                "building": "",
+                "roomNumber": ""
+            },
+            "lecturer": "",
+            "type": ""
+        }
+    ],
+    "Friday": [
+        {
+            "subjectName": "",
+            "hour": {
+                "start": "",
+                "end": ""
+            },
+            "location": {
+                "building": "",
+                "roomNumber": ""
+            },
+            "lecturer": "",
+            "type": ""
+        }
+    ]
+}

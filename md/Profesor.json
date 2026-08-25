@@ -1,0 +1,139 @@
+{
+  "Basic_Information": {
+    "academicPosition": "",
+    "firstName": "",
+    "middleName": "",
+    "lastName": "",
+    "photo": "",
+    "dateOfBirth": "",
+    "placeOfBirth": "",
+    "officeAddress": "",
+    "officeNumber": "",
+    "administrativeFunction": ""
+  },
+  "Education": {
+    "university": "",
+    "major": "",
+    "academicDegrees": [
+      {
+        "degree": "",
+        "dissertationTitle": "",
+        "dateAcquired": "",
+        "scientificSpecialty": ""
+      }
+    ],
+    "academicTitles": [
+      {
+        "title": "",
+        "dateAcquired": "",
+        "scientificSpecialty": ""
+      }
+    ],
+    "fieldsOfHigherEducation": [],
+    "professionalFields": [],
+    "researchInterests": []
+  },
+  "Teaching_Activity": {
+    "bachelorsCourses": [],
+    "mastersCourses": [],
+    "phdCourses": []
+  },
+  "Foreign_Languages": [
+    {
+      "languageName": "",
+      "readingLevel": "",
+      "writingLevel": "",
+      "speakingLevel": ""
+    }
+  ],
+  "Work_Experience": [
+    {
+      "period": {
+        "from": "",
+        "to": ""
+      },
+      "organization": "",
+      "position": "",
+      "description": ""
+    }
+  ],
+  "Professional_Competences": {
+    "programmingLanguages": [
+      {
+        "language": "",
+        "proficiencyLevel": ""
+      }
+    ],
+    "technologies": [],
+    "platforms": [],
+    "frameworks": [],
+    "databases": [],
+    "otherTechnicalSkills": []
+  },
+  "Membership_in_Organizations": [
+    {
+      "organization": "",
+      "membershipType": "",
+      "period": ""
+    }
+  ],
+  "Participation_in_Research_Projects": [
+    {
+      "projectName": "",
+      "period": "",
+      "fundingOrganization": "",
+      "contractNumber": "",
+      "projectRole": ""
+    }
+  ],
+  "Publications": {
+    "summaryIndicators": {
+      "numberOfScientificArticles": 0,
+      "numberOfInternationalReports": 0,
+      "numberOfNationalReports": 0
+    },
+    "booksAndTextbooks": [
+      {
+        "authors": [],
+        "title": "",
+        "publisher": "",
+        "isbn": "",
+        "year": "",
+        "publicationType": ""
+      }
+    ],
+    "selectedScientificPublications": [
+      {
+        "authors": [],
+        "title": "",
+        "publicationOrConference": "",
+        "volume": "",
+        "issue": "",
+        "pages": "",
+        "year": "",
+        "doi": "",
+        "url": "",
+        "pdfFile": ""
+      }
+    ]
+  },
+  "Citations": {
+    "citationsByForeignAuthors": 0,
+    "citationsByBulgarianAuthors": 0,
+    "totalCitations": 0
+  },
+  "Achievements": {
+    "scientificAchievements": [],
+    "professionalAchievements": [],
+    "awardsAndHonors": [],
+    "reviewerActivity": [],
+    "editorialBoardMemberships": [],
+    "certificates": []
+  },
+  "Contact_Information": {
+    "phoneNumbers": [],
+    "emails": [],
+    "personalWebsite": "",
+    "researchNetworkProfiles": []
+  }
+}
