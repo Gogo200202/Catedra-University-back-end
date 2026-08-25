@@ -3,6 +3,7 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 
 var newsRouter = require('./routes/news');
+var authRouter = require('./routes/auth');
 
 var app = express();
 
@@ -14,5 +15,6 @@ app.use(logger('dev'));
 app.use(express.json());
 
 app.use('/news', newsRouter);
+app.use('/auth', authRouter);
 
 module.exports = app;
