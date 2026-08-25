@@ -61,4 +61,25 @@ router.get('/me', auth, async (req, res) => {
   res.json(userResponse(req.user, token));
 });
 
+router.put('/me', auth, async (req, res) => {
+  try {
+    const { name, email, photoUrl, password } = req.body;
+    const updates = {};
+    if (name !== undefined) updates.name = name;
+    if (email !== undefined) updates.email = email;
+    if (photoUrl !== undefined) updates.photoUrl = photoUrl;
+    if (password) updates.password = password;
+
+    const user = await User.findByIdAndUpdate(req.user._id, updates, {
+      new: true,
+      runValidators: true,
+    });
+
+    const token = req.headers.authorization.split(' ')[1];
+    res.json(userResponse(user, token));
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
 module.exports = router;
