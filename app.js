@@ -4,6 +4,8 @@ var mongoose = require('mongoose');
 
 var newsRouter = require('./routes/news');
 var authRouter = require('./routes/auth');
+var projectsRouter = require('./routes/projects');
+var publicationsRouter = require('./routes/publications');
 
 var app = express();
 
@@ -16,5 +18,7 @@ app.use(express.json());
 
 app.use('/news', newsRouter);
 app.use('/auth', authRouter);
+app.use('/research/projects', projectsRouter);
+app.use('/research/publications', publicationsRouter);
 
 module.exports = app;

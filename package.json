@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "dev": "nodemon ./bin/www",
+    "seed:professors": "node ./seed/seedProfessors.js",
+    "seed:research": "node ./seed/seedResearch.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
