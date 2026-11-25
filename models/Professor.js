@@ -2,124 +2,130 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const academicDegreeSchema = new Schema({
-  degree: { type: String, default: '' },
-  dissertationTitle: { type: String, default: '' },
-  dateAcquired: { type: String, default: '' },
-  scientificSpecialty: { type: String, default: '' },
-}, { _id: false });
-
-const academicTitleSchema = new Schema({
-  title: { type: String, default: '' },
-  dateAcquired: { type: String, default: '' },
-  scientificSpecialty: { type: String, default: '' },
-}, { _id: false });
-
-const foreignLanguageSchema = new Schema({
-  languageName: { type: String, default: '' },
-  readingLevel: { type: String, default: '' },
-  writingLevel: { type: String, default: '' },
-  speakingLevel: { type: String, default: '' },
-}, { _id: false });
-
-const workExperienceSchema = new Schema({
-  period: {
-    from: { type: String, default: '' },
-    to: { type: String, default: '' },
-  },
-  organization: { type: String, default: '' },
-  position: { type: String, default: '' },
-  description: { type: String, default: '' },
-}, { _id: false });
-
-const programmingLanguageSchema = new Schema({
-  language: { type: String, default: '' },
-  proficiencyLevel: { type: String, default: '' },
-}, { _id: false });
-
-const membershipSchema = new Schema({
-  organization: { type: String, default: '' },
-  membershipType: { type: String, default: '' },
-  period: { type: String, default: '' },
-}, { _id: false });
-
-const researchProjectSchema = new Schema({
-  projectName: { type: String, default: '' },
-  period: { type: String, default: '' },
-  fundingOrganization: { type: String, default: '' },
-  contractNumber: { type: String, default: '' },
-  projectRole: { type: String, default: '' },
-}, { _id: false });
-
-const bookSchema = new Schema({
-  authors: [String],
-  title: { type: String, default: '' },
-  publisher: { type: String, default: '' },
-  isbn: { type: String, default: '' },
-  year: { type: String, default: '' },
-  publicationType: { type: String, default: '' },
-}, { _id: false });
-
-const publicationSchema = new Schema({
-  authors: [String],
-  title: { type: String, default: '' },
-  publicationOrConference: { type: String, default: '' },
-  volume: { type: String, default: '' },
-  issue: { type: String, default: '' },
-  pages: { type: String, default: '' },
-  year: { type: String, default: '' },
-  doi: { type: String, default: '' },
-  url: { type: String, default: '' },
-  pdfFile: { type: String, default: '' },
+// Bilingual sub-schema: { bg: String, en: String }
+const bilingualSchema = new Schema({
+  bg: { type: String, default: '' },
+  en: { type: String, default: '' },
 }, { _id: false });
 
 const ProfessorSchema = new Schema({
   Basic_Information: {
-    academicPosition: { type: String, default: '' },
-    firstName: { type: String, default: '' },
-    middleName: { type: String, default: '' },
-    lastName: { type: String, default: '' },
-    photo: { type: String, default: '' },
-    dateOfBirth: { type: String, default: '' },
-    placeOfBirth: { type: String, default: '' },
-    officeAddress: { type: String, default: '' },
-    officeNumber: { type: String, default: '' },
-    administrativeFunction: { type: String, default: '' },
+    academicPosition: bilingualSchema,
+    firstName: bilingualSchema,
+    middleName: bilingualSchema,
+    lastName: bilingualSchema,
+    photo: bilingualSchema,
+    dateOfBirth: bilingualSchema,
+    placeOfBirth: bilingualSchema,
+    officeAddress: bilingualSchema,
+    officeNumber: bilingualSchema,
+    administrativeFunction: bilingualSchema,
   },
   Education: {
-    university: { type: String, default: '' },
-    major: { type: String, default: '' },
-    academicDegrees: [academicDegreeSchema],
-    academicTitles: [academicTitleSchema],
-    fieldsOfHigherEducation: [String],
-    professionalFields: [String],
-    researchInterests: [String],
+    university: bilingualSchema,
+    major: bilingualSchema,
+    academicDegrees: [
+      {
+        degree: bilingualSchema,
+        dissertationTitle: bilingualSchema,
+        dateAcquired: bilingualSchema,
+        scientificSpecialty: bilingualSchema,
+      }
+    ],
+    academicTitles: [
+      {
+        title: bilingualSchema,
+        dateAcquired: bilingualSchema,
+        scientificSpecialty: bilingualSchema,
+      }
+    ],
+    fieldsOfHigherEducation: [bilingualSchema],
+    professionalFields: [bilingualSchema],
+    researchInterests: [bilingualSchema],
   },
   Teaching_Activity: {
-    bachelorsCourses: [String],
-    mastersCourses: [String],
-    phdCourses: [String],
+    bachelorsCourses: [bilingualSchema],
+    mastersCourses: [bilingualSchema],
+    phdCourses: [bilingualSchema],
   },
-  Foreign_Languages: [foreignLanguageSchema],
-  Work_Experience: [workExperienceSchema],
+  Foreign_Languages: [
+    {
+      languageName: bilingualSchema,
+      readingLevel: bilingualSchema,
+      writingLevel: bilingualSchema,
+      speakingLevel: bilingualSchema,
+    }
+  ],
+  Work_Experience: [
+    {
+      period: {
+        from: bilingualSchema,
+        to: bilingualSchema,
+      },
+      organization: bilingualSchema,
+      position: bilingualSchema,
+      description: bilingualSchema,
+    }
+  ],
   Professional_Competences: {
-    programmingLanguages: [programmingLanguageSchema],
-    technologies: [String],
-    platforms: [String],
-    frameworks: [String],
-    databases: [String],
-    otherTechnicalSkills: [String],
+    programmingLanguages: [
+      {
+        language: bilingualSchema,
+        proficiencyLevel: bilingualSchema,
+      }
+    ],
+    technologies: [bilingualSchema],
+    platforms: [bilingualSchema],
+    frameworks: [bilingualSchema],
+    databases: [bilingualSchema],
+    otherTechnicalSkills: [bilingualSchema],
   },
-  Membership_in_Organizations: [membershipSchema],
-  Participation_in_Research_Projects: [researchProjectSchema],
+  Membership_in_Organizations: [
+    {
+      organization: bilingualSchema,
+      membershipType: bilingualSchema,
+      period: bilingualSchema,
+    }
+  ],
+  Participation_in_Research_Projects: [
+    {
+      projectName: bilingualSchema,
+      period: bilingualSchema,
+      fundingOrganization: bilingualSchema,
+      contractNumber: bilingualSchema,
+      projectRole: bilingualSchema,
+    }
+  ],
   Publications: {
     summaryIndicators: {
       numberOfScientificArticles: { type: Number, default: 0 },
       numberOfInternationalReports: { type: Number, default: 0 },
       numberOfNationalReports: { type: Number, default: 0 },
     },
-    booksAndTextbooks: [bookSchema],
-    selectedScientificPublications: [publicationSchema],
+    booksAndTextbooks: [
+      {
+        authors: [String],
+        title: bilingualSchema,
+        publisher: bilingualSchema,
+        isbn: bilingualSchema,
+        year: bilingualSchema,
+        publicationType: bilingualSchema,
+      }
+    ],
+    selectedScientificPublications: [
+      {
+        authors: [String],
+        title: bilingualSchema,
+        publicationOrConference: bilingualSchema,
+        volume: bilingualSchema,
+        issue: bilingualSchema,
+        pages: bilingualSchema,
+        year: bilingualSchema,
+        doi: bilingualSchema,
+        url: bilingualSchema,
+        pdfFile: bilingualSchema,
+      }
+    ],
   },
   Citations: {
     citationsByForeignAuthors: { type: Number, default: 0 },
@@ -127,17 +133,17 @@ const ProfessorSchema = new Schema({
     totalCitations: { type: Number, default: 0 },
   },
   Achievements: {
-    scientificAchievements: [String],
-    professionalAchievements: [String],
-    awardsAndHonors: [String],
-    reviewerActivity: [String],
-    editorialBoardMemberships: [String],
-    certificates: [String],
+    scientificAchievements: [bilingualSchema],
+    professionalAchievements: [bilingualSchema],
+    awardsAndHonors: [bilingualSchema],
+    reviewerActivity: [bilingualSchema],
+    editorialBoardMemberships: [bilingualSchema],
+    certificates: [bilingualSchema],
   },
   Contact_Information: {
     phoneNumbers: [String],
     emails: [String],
-    personalWebsite: { type: String, default: '' },
+    personalWebsite: bilingualSchema,
     researchNetworkProfiles: [String],
   },
 }, {

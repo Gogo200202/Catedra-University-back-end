@@ -6,6 +6,7 @@ var newsRouter = require('./routes/news');
 var authRouter = require('./routes/auth');
 var projectsRouter = require('./routes/projects');
 var publicationsRouter = require('./routes/publications');
+var professorsRouter = require('./routes/professors');
 
 var app = express();
 
@@ -20,5 +21,6 @@ app.use('/news', newsRouter);
 app.use('/auth', authRouter);
 app.use('/research/projects', projectsRouter);
 app.use('/research/publications', publicationsRouter);
+app.use('/professors', professorsRouter);
 
 module.exports = app;
