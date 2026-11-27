@@ -8,7 +8,7 @@ const UserSchema = new mongoose.Schema({
   photoUrl: { type: String, default: null },
   role: {
     type: String,
-    enum: ['student', 'teacher', 'admin'],
+    enum: ['student', 'teacher', 'departmentHead', 'secretary', 'systemAdmin', 'admin'],
     default: 'student',
   },
 }, {

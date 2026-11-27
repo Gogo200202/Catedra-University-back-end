@@ -64,16 +64,12 @@ router.get('/me', auth, async (req, res) => {
 router.put('/me', auth, async (req, res) => {
   try {
     const { name, email, photoUrl, password } = req.body;
-    const updates = {};
-    if (name !== undefined) updates.name = name;
-    if (email !== undefined) updates.email = email;
-    if (photoUrl !== undefined) updates.photoUrl = photoUrl;
-    if (password) updates.password = password;
-
-    const user = await User.findByIdAndUpdate(req.user._id, updates, {
-      new: true,
-      runValidators: true,
-    });
+    const user = req.user;
+    if (name !== undefined) user.name = name;
+    if (email !== undefined) user.email = email;
+    if (photoUrl !== undefined) user.photoUrl = photoUrl;
+    if (password) user.password = password;
+    await user.save();
 
     const token = req.headers.authorization.split(' ')[1];
     res.json(userResponse(user, token));

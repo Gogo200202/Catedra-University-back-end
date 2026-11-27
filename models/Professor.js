@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const { Schema } = mongoose;
 
@@ -9,6 +10,10 @@ const bilingualSchema = new Schema({
 }, { _id: false });
 
 const ProfessorSchema = new Schema({
+  professorLoginAccount: {
+    email: { type: String, trim: true, lowercase: true },
+    passwordHash: { type: String, select: false },
+  },
   Basic_Information: {
     academicPosition: bilingualSchema,
     firstName: bilingualSchema,
@@ -149,6 +154,31 @@ const ProfessorSchema = new Schema({
 }, {
   timestamps: true,
   collection: 'professors',
+  toJSON: {
+    transform(_document, result) {
+      if (result.professorLoginAccount) delete result.professorLoginAccount.passwordHash;
+      return result;
+    },
+  },
 });
+
+ProfessorSchema.index(
+  { 'professorLoginAccount.email': 1 },
+  { unique: true, sparse: true },
+);
+
+ProfessorSchema.pre('save', async function hashLoginPassword() {
+  if (!this.isModified('professorLoginAccount.passwordHash')) return;
+  const passwordHash = this.professorLoginAccount && this.professorLoginAccount.passwordHash;
+  if (passwordHash) {
+    this.professorLoginAccount.passwordHash = await bcrypt.hash(passwordHash, 10);
+  }
+});
+
+ProfessorSchema.methods.compareLoginPassword = function (candidatePassword) {
+  const hash = this.professorLoginAccount && this.professorLoginAccount.passwordHash;
+  if (!hash) return Promise.resolve(false);
+  return bcrypt.compare(candidatePassword, hash);
+};
 
 module.exports = mongoose.model('Professor', ProfessorSchema);
